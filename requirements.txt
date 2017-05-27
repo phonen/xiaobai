@@ -1,5 +1,0 @@
-pypng
-pyqrcode
-qrcode
-requests
-web.py
