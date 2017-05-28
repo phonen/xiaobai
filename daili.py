@@ -369,10 +369,7 @@ def exist_friends(msg):
 # 管理群内的消息处理
 @bot.register(Group, except_self=False)
 def wxpy_group(msg):
-    ret_msg = remote_kick(msg)
-    if ret_msg:
-        return ret_msg
-    elif msg.is_at:
+    if msg.is_at:
         print(msg.text)
         ret_msg = handle_group_msg(msg)
         if ret_msg:

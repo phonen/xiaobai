@@ -17,7 +17,7 @@ bot = Bot('bot.pkl', console_qr=True)
 '''
 bot.enable_puid('wxpy_puid.pkl')
 
-myconfig = {'site_url':'http://taotehui.co/'}
+myconfig = {'site_url':'http://13bag.com/'}
 tuling_switch = True
 '''
 邀请信息处理
@@ -158,7 +158,7 @@ def isproxy(group, proxywx):
     return f
 
 '''
-处理消息文本
+处理群消息文本
 '''
 def handle_group_msg(msg):
     if msg.type is TEXT:
@@ -183,15 +183,17 @@ def handle_group_msg(msg):
                     post_data = {'group': msg.sender.name, 'proxywx': msg.member.name,
                                  'msg': Command_result[0]}
                     print(post_data)
-                    reply = wxai_info_post(post_data, 'taoke_info')
+                    reply = wxai_info_post(post_data, 'taoke_info_v1')
                     reply = reply.decode('utf-8')
+                    reply =  '@' + msg.member.name + reply
                     print(reply)
                     return reply
                 else:
                     post_data = {'iid': iid, 'group': msg.sender.name, 'proxywx': msg.member.name}
                     print(post_data)
-                    reply = wxai_info_post(post_data, 'get_taoke_by_iid')
+                    reply = wxai_info_post(post_data, 'taoke_info_v1')
                     reply = reply.decode('utf-8')
+                    reply = '@' + msg.member.name + reply
                     print(reply)
                     return reply
 
@@ -228,6 +230,65 @@ def handle_group_msg(msg):
                         reply = '@ ' + msg.member.name + ': ' + u"对不起，工作中，不聊天，,,Ծ‸Ծ,,"
                         print(reply)
                         return reply
+
+'''
+处理好友消息文本
+'''
+def handle_private_msg(msg):
+    if msg.type is TEXT:
+        search_url_pattern = re.compile(u"[a-zA-z]+://[^\s]*")
+        Command_result = search_url_pattern.findall(msg.text)
+        if len(Command_result) > 0:
+            iid = search_iid_from_url(Command_result[0])
+            print(u'[INFO] LOG-->Command_result:%s' % (str(Command_result)))
+            if iid == '':
+
+                post_data = {'proxywx': 'pioul',
+                             'msg': Command_result[0]}
+                print(post_data)
+
+            else:
+                post_data = {'iid': iid, 'proxywx': 'pioul'}
+                print(post_data)
+            reply = wxai_info_post(post_data, 'taoke_info_v1')
+            reply = reply.decode('utf-8')
+            print(reply)
+            return reply
+
+
+        # elif msg.text.find('http') >= 0:
+        #    post_data = {'group': msg.sender.name, 'proxywx': msg.member.name,
+        #                 'msg': msg.text}
+        #    reply = wxai_info_post(post_data, 'taoke_info')
+
+        else:
+            search_pattern = re.compile(u"^(买|找|帮我找|有没有|我要买|宝宝要|宝宝买|我要找)\s?(.*?)$")
+            Command_result = search_pattern.findall(msg.text)
+
+            if len(Command_result) == 1:
+                skey = Command_result[0][1]
+                post_data = {'group': msg.sender.name, 'proxywx': msg.member.name, 'kw': skey}
+                return_data = wxai_info_post(post_data, 'search_items_by_key')
+                return_data = return_data.decode('utf-8')
+                if return_data != '':
+                    reply = u' 搜索结果：%s' % (return_data)
+
+                    print(reply)
+                    return reply
+                else:
+                    return_data = u'没找到，请到网站查找!http://www.taotehui.co'
+                    reply = u' 搜索结果：%s' % (return_data)
+                    print(reply)
+                    return reply
+            else:
+                if tuling_switch:
+                    tuling = Tuling(api_key='0c68515ebcb2920ea3844d4f8fba60fe')
+                    tuling.do_reply(msg)
+                else:
+                    reply = u"对不起，工作中，不聊天，,,Ծ‸Ծ,,"
+                    print(reply)
+                    return reply
+
 
 
 '''
@@ -363,7 +424,8 @@ def exist_friends(msg):
     if msg.text.lower() in keyword_of_group.keys():
         invite(msg.sender, msg.text.lower())
     else:
-        return invite_text
+        ret_msg = handle_private_msg(msg)
+        return ret_msg
 
 
 # 管理群内的消息处理
