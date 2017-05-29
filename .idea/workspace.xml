@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="456c9dab-8432-4cbe-9685-cd6919e5a81f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/daili.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/friend.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/xiaobai.iml" afterPath="$PROJECT_DIR$/.idea/xiaobai.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wxcom.py" afterPath="$PROJECT_DIR$/wxcom.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,11 +14,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="wxcom.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wxcom.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wxcom.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2322">
-              <caret line="97" column="12" lean-forward="true" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="12" />
+            <state relative-caret-position="1026">
+              <caret line="289" column="37" lean-forward="true" selection-start-line="289" selection-start-column="37" selection-end-line="289" selection-end-column="37" />
               <folding>
                 <element signature="e#40#58#0" expanded="true" />
               </folding>
@@ -31,10 +26,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="friend.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="friend.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/friend.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3360">
+            <state relative-caret-position="-3684">
               <caret line="193" column="68" lean-forward="false" selection-start-line="193" selection-start-column="68" selection-end-line="193" selection-end-column="68" />
               <folding />
             </state>
@@ -59,9 +54,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/wxcom.py" />
         <option value="$PROJECT_DIR$/daili.py" />
         <option value="$PROJECT_DIR$/friend.py" />
+        <option value="$PROJECT_DIR$/wxcom.py" />
       </list>
     </option>
   </component>
@@ -189,21 +184,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wxcom.py">
+    <entry file="file://$PROJECT_DIR$/friend.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2322">
-          <caret line="97" column="12" lean-forward="true" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="12" />
-          <folding>
-            <element signature="e#40#58#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-3684">
+          <caret line="193" column="68" lean-forward="false" selection-start-line="193" selection-start-column="68" selection-end-line="193" selection-end-column="68" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/friend.py">
+    <entry file="file://$PROJECT_DIR$/wxcom.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3360">
-          <caret line="193" column="68" lean-forward="false" selection-start-line="193" selection-start-column="68" selection-end-line="193" selection-end-column="68" />
-          <folding />
+        <state relative-caret-position="1026">
+          <caret line="289" column="37" lean-forward="true" selection-start-line="289" selection-start-column="37" selection-end-line="289" selection-end-column="37" />
+          <folding>
+            <element signature="e#40#58#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
