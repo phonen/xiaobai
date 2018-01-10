@@ -69,7 +69,7 @@ keyword_of_group.update(city_group)
 
 female_group = "机器人测试群"
 
-alert_group = "机器人测试群"
+alert_group = "数字资产投资交流群"
 
 turing_key = ''
 

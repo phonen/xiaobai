@@ -264,14 +264,15 @@ fresh_groups()
 get_logger()
 logger.error(str("机器人登陆成功！" + get_time()))
 
-start_new_thread(heartbeat)
+#start_new_thread(heartbeat)
 
 
 def fresh_bsj():
     r = redis.Redis(host='localhost', port=6379, decode_responses=True)
     while True:
         content = r.rpop("content")
-        time.sleep(60)
+        logger.error(content)
+        time.sleep(300)
 
 
 
