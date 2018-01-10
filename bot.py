@@ -200,6 +200,7 @@ def new_friends(msg):
     if msg.text.lower() in keyword_of_group.keys():
         invite(user, msg.text.lower())
     else:
+        print(user.name)
         return invite_text
 
 @bot.register(Friend, msg_types=TEXT)

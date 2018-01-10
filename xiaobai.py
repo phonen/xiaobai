@@ -5,6 +5,14 @@ from wxpy import *
 import re
 import requests
 import json
+import time
+import os
+import configparser
+from wxpy.utils import start_new_thread
+from OkcoinSpotAPI import OKCoinSpot
+
+# from OkcoinFutureAPI import OKCoinFuture
+# import chbtc_api
 
 '''
 使用 cache 来缓存登陆信息，同时使用控制台登陆
@@ -17,7 +25,11 @@ bot = Bot('bot.pkl', console_qr=True)
 bot.enable_puid('wxpy_puid.pkl')
 
 myconfig = {'site_url': 'http://13bag.com/'}
-tuling_switch = True
+tuling_switch = False
+
+config = configparser.ConfigParser()
+config.read("conf.ini")
+
 '''
 邀请信息处理
 '''
@@ -32,29 +44,42 @@ rp_new_member_name = (
 机器人的puid 可以通过 bot.self.puid 获得
 其他用户的PUID 可以通过 执行 export_puid.py 生成 data 文件，在data 文件中获取
 '''
-admin_puids = (
-    '828195e3',
-    '50d8a3e3'
-)
-
+admin_names = [
+    u'杨祥贵',
+    u'遥远的眼神'
+]
 '''
 定义需要管理的群
 群的PUID 可以通过 执行 export_puid.py 生成 data 文件，在data 文件中获取
 '''
-
-
+group_names = (
+    u'比特股大户内部交流群',
+)
+alert_group = "比特股大户内部交流群"
 # 格式化 Group
-#groups = list(map(lambda x: bot.groups().search(puid=x)[0], group_puids))
+groups = list(map(lambda x: bot.groups().search(x)[0], group_names))
 # 格式化 Admin
-admins = list(map(lambda x: bot.friends().search(puid=x)[0], admin_puids))
+# admins = list(map(lambda x: bot.friends().search(puid=x)[0], admin_puids))
 
 # 新人入群的欢迎语
 welcome_text = '''🎉 欢迎 @{} 的加入！
-😃 有问题请私聊我。
+😃 加我好友有惊喜！找优惠，找产品，有免单！
 '''
 
-invite_text = """欢迎您，我是布袋购微信群助手。
+invite_text = """欢迎您，我是机器人小白。
+😃 我是你的机器人好友，输入：找XXX;就会得到你想要的天猫优惠券产品！
+我是你的机器人好友，发送要买的淘宝产品链接给我，我会帮你找出产品优惠券发给你哦！
 """
+'''
+设置比特币行情关键字
+'''
+keyword_of_hqapi = {
+    "btc": "okcoin",
+    "ltc": "okcoin",
+    "eth": "okcoin",
+    "etc": "chbtc",
+    "bts": "chbtc"
+}
 
 '''
 设置群组关键词和对应群名
@@ -67,6 +92,9 @@ keyword_of_group = {
 
 # 查询订单：*1234567890
 order_id = re.compile(r'^(?:\*(\d{16,17})$)')
+
+# 匹配设置比特预警值
+alert_set = re.compile(r'^((.+_(high|low))=(\d+\.?\d+?)$)')
 
 # 远程踢人命令: 移出 @<需要被移出的人>
 rp_kick = re.compile(r'^(?:移出|T|t|移除|踢出|拉黑)\s*@(.+?)(?:\u2005?\s*$)')
@@ -82,7 +110,85 @@ city_group = {
 
 female_group = "Linux中国◆技术美女群"
 
+
 # 下方为函数定义
+
+# 下方为函数定义
+
+def get_time():
+    return str(time.strftime("%Y-%m-%d %H:%M:%S"))
+
+
+'''
+机器人消息提醒设置
+'''
+group_receiver = ensure_one(bot.groups().search(alert_group))
+logger = get_wechat_logger(group_receiver)
+logger.error(str("机器人登陆成功！" + get_time()))
+
+'''
+重启机器人
+'''
+
+
+def _restart():
+    os.execv(sys.executable, [sys.executable] + sys.argv)
+
+
+'''
+定时报告进程状态
+'''
+
+
+def heartbeat():
+    while bot.alive:
+        time.sleep(3600)
+        # noinspection PyBroadException
+        try:
+            logger.error(
+                get_time() + " 机器人目前在线,共有好友 【" + str(len(bot.friends())) + "】 群 【 " + str(len(bot.groups())) + "】")
+        except ResponseError as e:
+            if 1100 <= e.err_code <= 1102:
+                logger.critical('xiaobai offline: {}'.format(e))
+                _restart()
+
+
+start_new_thread(heartbeat)
+
+
+def get_btshq(keyword):
+    url = 'http://api.chbtc.com/data/v1/ticker?currency=' + keyword + '_cny'
+    r = requests.get(url)
+    # r.encoding = 'utf-8'
+    # f = r.text.encode('utf-8')
+    f = r.text
+    print(f)
+    doc = json.loads(f)
+    return doc['ticker']['last']
+
+
+'''
+定时提醒bts行情
+'''
+
+
+def alert_hq():
+    keyword = 'bts'
+    last_str = get_btshq(keyword)
+    while True:
+        bts_high = config.get("config", "bts_high")
+        bts_low = config.get("config", "bts_low")
+        last = float(last_str)
+        if last >= float(bts_high):
+            logger.error('最新: {}，超过最高设定值{}'.format(last_str, bts_high))
+        elif last <= float(bts_low):
+            logger.error('最新: {}，超过最低设定值{}'.format(last_str, bts_low))
+        time.sleep(60)
+        last_str = get_btshq(keyword)
+
+
+start_new_thread(alert_hq)
+
 '''
 处理发送后台查询
 '''
@@ -137,14 +243,16 @@ def from_admin(msg):
     if not isinstance(msg, Message):
         raise TypeError('expected Message, got {}'.format(type(msg)))
     from_user = msg.member if isinstance(msg.chat, Group) else msg.sender
-    if from_user in admins:
+    if from_user.name in admin_names:
         return True
     else:
         return False
 
+
 '''
 处理消息文本
 '''
+
 
 def handle_group_msg(msg):
     if msg.type is TEXT:
@@ -166,18 +274,18 @@ def handle_group_msg(msg):
                 print(u'[INFO] LOG-->Command_result:%s' % (str(Command_result)))
                 if iid == '':
 
-                    post_data = {'group': msg.sender.name, 'proxywx': msg.member.name,
+                    post_data = {'proxywx': 'pioul',
                                  'msg': Command_result[0]}
                     print(post_data)
-                    reply = wxai_info_post(post_data, 'taoke_info')
-                    reply = reply.decode('utf-8')
+                    reply = wxai_info_post(post_data, 'taoke_info_v1')
+                    reply = '@' + msg.sender.name + ': ' + reply.decode('utf-8')
                     print(reply)
                     return reply
                 else:
-                    post_data = {'iid': iid, 'group': msg.sender.name, 'proxywx': msg.member.name}
+                    post_data = {'iid': iid, 'proxywx': 'pioul'}
                     print(post_data)
-                    reply = wxai_info_post(post_data, 'get_taoke_by_iid')
-                    reply = reply.decode('utf-8')
+                    reply = wxai_info_post(post_data, 'taoke_info_v1')
+                    reply = '@' + msg.sender.name + ': ' + reply.decode('utf-8')
                     print(reply)
                     return reply
 
@@ -193,7 +301,7 @@ def handle_group_msg(msg):
 
                 if len(Command_result) == 1:
                     skey = Command_result[0][1]
-                    post_data = {'group': msg.sender.name, 'proxywx': msg.member.name, 'kw': skey}
+                    post_data = {'proxywx': 'pioul', 'kw': skey}
                     return_data = wxai_info_post(post_data, 'search_items_by_key')
                     return_data = return_data.decode('utf-8')
                     if return_data != '':
@@ -202,7 +310,7 @@ def handle_group_msg(msg):
                         print(reply)
                         return reply
                     else:
-                        return_data = u'没找到，请到网站查找!http://www.taotehui.co'
+                        return_data = u'没找到，请到网站查找!http://www.13bag.com'
                         reply = '@' + msg.member.name + u' 搜索结果：%s' % (return_data)
                         print(reply)
                         return reply
@@ -211,9 +319,10 @@ def handle_group_msg(msg):
                         tuling = Tuling(api_key='0c68515ebcb2920ea3844d4f8fba60fe')
                         tuling.do_reply(msg)
                     else:
-                        reply = '@ ' + msg.member.name + ': ' + u"对不起，工作中，不聊天，,,Ծ‸Ծ,,"
+                        reply = '@' + msg.member.name + ': ' + welcome_text
                         print(reply)
                         return reply
+
 
 def handle_private_msg(msg):
     if msg.type is TEXT:
@@ -228,14 +337,14 @@ def handle_private_msg(msg):
                              'msg': Command_result[0]}
                 print(post_data)
                 reply = wxai_info_post(post_data, 'taoke_info_v1')
-                reply = '@ ' + msg.sender.name + ': ' + reply.decode('utf-8')
+                reply = reply.decode('utf-8')
                 print(reply)
                 return reply
             else:
                 post_data = {'iid': iid, 'proxywx': 'pioul'}
                 print(post_data)
-                reply = wxai_info_post(post_data, 'get_taoke_v1')
-                reply = '@ ' + msg.sender.name + ': ' + reply.decode('utf-8')
+                reply = wxai_info_post(post_data, 'taoke_info_v1')
+                reply = reply.decode('utf-8')
                 print(reply)
                 return reply
 
@@ -249,13 +358,13 @@ def handle_private_msg(msg):
                 return_data = wxai_info_post(post_data, 'search_items_by_key')
                 return_data = return_data.decode('utf-8')
                 if return_data != '':
-                    reply = '@' + msg.sender.name + u' 搜索结果：%s' % (return_data)
+                    reply = u' 搜索结果：%s' % (return_data)
 
                     print(reply)
                     return reply
                 else:
-                    return_data = u'没找到，请到网站查找!http://www.taotehui.co'
-                    reply = '@' + msg.sender.name + u' 搜索结果：%s' % (return_data)
+                    return_data = u'没找到，请到网站查找!http://www.13bag.com'
+                    reply = u' 搜索结果：%s' % (return_data)
                     print(reply)
                     return reply
             else:
@@ -263,7 +372,7 @@ def handle_private_msg(msg):
                     tuling = Tuling(api_key='0c68515ebcb2920ea3844d4f8fba60fe')
                     tuling.do_reply(msg)
                 else:
-                    reply = '@ ' + msg.sender.name + ': ' + u"对不起，工作中，不聊天，,,Ծ‸Ծ,,"
+                    reply = invite_text
                     print(reply)
                     return reply
 
@@ -325,6 +434,63 @@ def proc_at_info(msg):
         str_msg_all = msg
         str_msg = msg
     return str_msg_all.replace(u'\u2005', ''), str_msg.replace(u'\u2005', ''), infos
+
+
+def get_hq_chbtc(keyword):
+    url = 'http://api.chbtc.com/data/v1/ticker?currency=' + keyword + '_cny'
+    r = requests.get(url)
+    # r.encoding = 'utf-8'
+    # f = r.text.encode('utf-8')
+    f = r.text
+    print(f)
+    doc = json.loads(f)
+    timeArray = time.localtime(int(doc['date']) / 1000)
+    otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+    ret_msg = keyword + '''
+最新成交价：￥{}
+买一：￥{}
+卖一：￥{}
+最高：￥{}
+最低：￥{}
+成交量：{}
+时间：{}
+		'''
+    return ret_msg.format(doc['ticker']['last'], doc['ticker']['buy'], doc['ticker']['sell'], doc['ticker']['high'],
+                          doc['ticker']['low'], doc['ticker']['vol'], otherStyleTime)
+
+
+def get_hq(keyword, platform):
+    if platform == 'okcoin':
+        apikey = '99ad2439-28f3-4297-8532-54ce8b7dc52c'
+        secretkey = 'E1AE48319FF5C7C6ADA39C3040ACC6B8'
+        okcoinRESTURL = 'www.okcoin.cn'  # 请求注意：国内账号需要 修改为 www.okcoin.cn
+        okcoinSpot = OKCoinSpot(okcoinRESTURL, apikey, secretkey)
+        ticker_key = keyword + '_cny'
+        f = okcoinSpot.ticker(ticker_key)
+        doc = f
+        # doc = json.loads(f)
+        print(u' 现货行情 ')
+        print(doc)
+        timeArray = time.localtime(int(doc['date']))
+        otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+        ret_msg = keyword + '''
+最新成交价：￥{}
+买一：￥{}
+卖一：￥{}
+最高：￥{}
+最低：￥{}
+成交量：{}
+时间：{}
+		'''
+        return ret_msg.format(doc['ticker']['last'], doc['ticker']['buy'], doc['ticker']['sell'], doc['ticker']['high'],
+                              doc['ticker']['low'], doc['ticker']['vol'], otherStyleTime)
+    elif platform == 'chbtc':
+        hq = get_hq_chbtc(keyword)
+
+        print(hq)
+        return hq
+    else:
+        pass
 
 
 '''
@@ -405,7 +571,8 @@ def new_friends(msg):
     if msg.text.lower() in keyword_of_group.keys():
         invite(user, msg.text.lower())
     else:
-        return invite_text
+        print(user.name)
+        user.send(invite_text)
 
 
 @bot.register(Friend, msg_types=TEXT)
@@ -436,6 +603,7 @@ def wxpy_group(msg):
         else:
             pass
 
+
 @bot.register(Group, CARD)
 def kickgg(msg):
     ret_msg = remote_kick(msg)
@@ -450,6 +618,27 @@ def welcome(msg):
     name = get_new_member_name(msg)
     if name:
         return welcome_text.format(name)
+
+
+@bot.register(groups, TEXT)
+def btchq(msg):
+    if msg.text.lower() in keyword_of_hqapi.keys():
+        ret_msg = get_hq(msg.text.lower(), keyword_of_hqapi[msg.text.lower()])
+        if ret_msg:
+            return ret_msg
+        else:
+            pass
+    else:
+        match = alert_set.findall(msg.text.lower())
+        if match:
+            print(match)
+            config.set("config", match[0][1], match[0][3])
+            config.write(open("conf.ini", "w"))
+            return '设置成功!'
+
+
+
+            # orderid = match.group(1)
 
 
 embed()

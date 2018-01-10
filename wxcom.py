@@ -2,22 +2,28 @@
 # coding: utf-8
 
 from wxpy import *
+from taoke import *
 import re
 import requests
 import json
+import time
+import os
+import configparser
+from wxpy.utils import start_new_thread
+
 
 '''
 使用 cache 来缓存登陆信息，同时使用控制台登陆
 '''
 bot = Bot('bot.pkl', console_qr=True)
 
+
 '''
 开启 PUID 用于后续的控制
 '''
 bot.enable_puid('wxpy_puid.pkl')
 
-myconfig = {'site_url': 'http://taotehui.co/'}
-tuling_switch = True
+
 '''
 邀请信息处理
 '''
@@ -26,84 +32,52 @@ rp_new_member_name = (
     re.compile(r'邀请"(.+)"加入'),
 )
 
-'''
-为保证兼容，在下方admins中使用标准用法
-在 admin_puids 中确保将机器人的puid 加入
-机器人的puid 可以通过 bot.self.puid 获得
-其他用户的PUID 可以通过 执行 export_puid.py 生成 data 文件，在data 文件中获取
-'''
-admin_puids = (
-    '828195e3',
-    '50d8a3e3'
-)
-
-'''
-定义需要管理的群
-群的PUID 可以通过 执行 export_puid.py 生成 data 文件，在data 文件中获取
-'''
-group_puids = (
-    '70471eec',
-    'db71b721'
-)
-
 # 格式化 Group
-groups = list(map(lambda x: bot.groups().search(puid=x)[0], group_puids))
+groups = list(map(lambda x: bot.groups().search(x)[0], group_names))
 # 格式化 Admin
-admins = list(map(lambda x: bot.friends().search(puid=x)[0], admin_puids))
-
-# 新人入群的欢迎语
-welcome_text = '''🎉 欢迎 @{} 的加入！
-😃 有问题请私聊我。
-'''
-
-invite_text = """欢迎您，我是淘特惠微信群助手。
-"""
-
-'''
-设置群组关键词和对应群名
-* 关键词必须为小写，查询时会做相应的小写处理
-'''
-keyword_of_group = {
-    "lfs": "Linux中国◆LFS群",
-    "dba": "Linux中国◆DBA群"
-}
-
-# 查询订单：*1234567890
-order_id = re.compile(r'^(?:\*(\d{16,17})$)')
+admins = list(map(lambda x: bot.friends().search(x)[0], admin_names))
 
 # 远程踢人命令: 移出 @<需要被移出的人>
-rp_kick = re.compile(r'^(?:移出|T|t|移除|踢出|拉黑)\s*@(.+?)(?:\u2005?\s*$)')
+rp_kick = re.compile(r'^(?:移出|T|t|移除|踢|拉黑)\s*@(.+?)(?:\u2005?\s*$)')
+
+
+def get_time():
+    return str(time.strftime("%Y-%m-%d %H:%M:%S"))
 
 '''
-地区群
+机器人消息提醒设置
 '''
-city_group = {
-    "北京": "Linux中国◆北京群",
-    "上海": "Linux中国◆上海群",
-    "广州": "Linux中国◆广州群",
-}
+group_receiver = ensure_one(bot.groups().search(alert_group))
+logger = get_wechat_logger(group_receiver)
+logger.error(str(robot_name + "登陆成功！"+ get_time()))
 
-female_group = "Linux中国◆技术美女群"
-
-# 下方为函数定义
 '''
-处理发送后台查询
+重启机器人
 '''
+def _restart():
+    os.execv(sys.executable, [sys.executable] + sys.argv)
 
 
-def wxai_info_post(post_data, action):
-    post_url = myconfig['site_url'] + '?g=Tbkqq&m=WxAi&a=' + action
-    r = requests.post(post_url, post_data)
-    r.encoding = 'utf-8'
-    f = r.text.encode('utf-8')
-    return f
+'''
+定时报告进程状态
+'''
+def heartbeat():
+    while bot.alive:
+        time.sleep(3600)
+        # noinspection PyBroadException
+        try:
+            logger.error(get_time() + robot_name + "目前在线,共有好友 【" + str(len(bot.friends())) + "】 群 【 " + str(len(bot.groups())) + "】" )
+        except ResponseError as e:
+            if 1100 <= e.err_code <= 1102:
+                logger.cerror(robot_name + ' 掉线: {}'.format(e))
+                _restart()
+
+start_new_thread(heartbeat)
 
 
 '''
 条件邀请
 '''
-
-
 def condition_invite(user):
     if user.sex == 2:
         female_groups = bot.groups().search(female_group)[0]
@@ -125,12 +99,9 @@ def condition_invite(user):
         except:
             pass
 
-
 '''
 判断消息发送者是否在管理员列表
 '''
-
-
 def from_admin(msg):
     """
     判断 msg 中的发送用户是否为管理员
@@ -140,134 +111,12 @@ def from_admin(msg):
     if not isinstance(msg, Message):
         raise TypeError('expected Message, got {}'.format(type(msg)))
     from_user = msg.member if isinstance(msg.chat, Group) else msg.sender
-    print(admins)
     if from_user in admins:
         return True
+
     else:
-        ret = isproxy(msg.sender.name, from_user.name)
-        ret = ret.decode('utf-8')
-        print(ret)
-        if ret == "ok":
+        if from_user in groups:
             return True
-        else:
-            return False
-
-
-'''
-判断消息发送者是否是该群的管理员
-'''
-
-
-def isproxy(group, proxywx):
-    post_data = {'proxywx': proxywx, 'group': group}
-    print(post_data)
-    post_url = myconfig['site_url'] + '?g=Tbkqq&m=WxAi&a=isproxy'
-    r = requests.post(post_url, post_data)
-    r.encoding = 'utf-8'
-    f = r.text.encode('utf-8')
-    return f
-
-
-'''
-处理消息文本
-'''
-
-
-def handle_group_msg(msg):
-    if msg.type is TEXT:
-        msgall = proc_at_info(msg.text)
-        msgtext = msgall[1]
-        match = order_id.search(msgtext)
-        if match:
-            orderid = match.group(1)
-            post_data = {'oid': orderid, 'proxywx': msg.member.name}
-            reply = wxai_info_post(post_data, 'order_json')
-            reply = reply.decode('utf-8')
-            print(reply)
-            return reply
-        else:
-            search_url_pattern = re.compile(u"[a-zA-z]+://[^\s]*")
-            Command_result = search_url_pattern.findall(msgtext)
-            if len(Command_result) > 0:
-                iid = search_iid_from_url(Command_result[0])
-                print(u'[INFO] LOG-->Command_result:%s' % (str(Command_result)))
-                if iid == '':
-
-                    post_data = {'group': msg.sender.name, 'proxywx': msg.member.name,
-                                 'msg': Command_result[0]}
-                    print(post_data)
-                    reply = wxai_info_post(post_data, 'taoke_info')
-                    reply = reply.decode('utf-8')
-                    print(reply)
-                    return reply
-                else:
-                    post_data = {'iid': iid, 'group': msg.sender.name, 'proxywx': msg.member.name}
-                    print(post_data)
-                    reply = wxai_info_post(post_data, 'get_taoke_by_iid')
-                    reply = reply.decode('utf-8')
-                    print(reply)
-                    return reply
-
-
-            # elif msg.text.find('http') >= 0:
-            #    post_data = {'group': msg.sender.name, 'proxywx': msg.member.name,
-            #                 'msg': msg.text}
-            #    reply = wxai_info_post(post_data, 'taoke_info')
-
-            else:
-                search_pattern = re.compile(u"^(买|找|帮我找|有没有|我要买|宝宝要|宝宝买|我要找)\s?(.*?)$")
-                Command_result = search_pattern.findall(msgtext)
-
-                if len(Command_result) == 1:
-                    skey = Command_result[0][1]
-                    post_data = {'group': msg.sender.name, 'proxywx': msg.member.name, 'kw': skey}
-                    return_data = wxai_info_post(post_data, 'search_items_by_key')
-                    return_data = return_data.decode('utf-8')
-                    if return_data != '':
-                        reply = '@' + msg.member.name + u' 搜索结果：%s' % (return_data)
-
-                        print(reply)
-                        return reply
-                    else:
-                        return_data = u'没找到，请到网站查找!http://www.taotehui.co'
-                        reply = '@' + msg.member.name + u' 搜索结果：%s' % (return_data)
-                        print(reply)
-                        return reply
-                else:
-                    if tuling_switch:
-                        tuling = Tuling(api_key='0c68515ebcb2920ea3844d4f8fba60fe')
-                        tuling.do_reply(msg)
-                    else:
-                        reply = '@ ' + msg.member.name + ': ' + u"对不起，工作中，不聊天，,,Ծ‸Ծ,,"
-                        print(reply)
-                        return reply
-
-
-'''
-查找iid,通过url
-'''
-
-
-def search_iid_from_url(x):
-    # 从消息中提取的url来进行iid的提取，这个函数代扩容！！
-    search_iid_pattern = re.compile(u"(http|https)://(item\.taobao\.com|detail\.tmall\.com)/(.*?)id=(\d*)")
-    search_iid_pattern_2 = re.compile(u'(http|https)://(a\.m\.taobao\.com)/i(\d*)\.htm')
-    r = requests.get(x, headers={
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.63 Safari/537.36'})
-    iid = ''
-    temp = search_iid_pattern.findall(r.url)
-    if len(temp) == 0:
-        try:
-            iid = search_iid_pattern.findall(r.content)[0][3]
-        except:
-            try:
-                iid = search_iid_pattern_2.findall(r.content)[0][2]
-            except:
-                pass
-    else:
-        iid = temp[0][3]
-    return iid
-
 
 def proc_at_info(msg):
     if not msg:
@@ -305,8 +154,6 @@ def proc_at_info(msg):
 '''
 远程踢人命令
 '''
-
-
 def remote_kick(msg):
     if msg.type is TEXT:
         match = rp_kick.search(msg.text)
@@ -318,7 +165,7 @@ def remote_kick(msg):
 
             member_to_kick = ensure_one(list(filter(
                 lambda x: x.name == name_to_kick, msg.chat)))
-            if member_to_kick == bot.self:
+            if member_to_kick  == bot.self:
                 return '无法移出 @{}'.format(member_to_kick.name)
             if member_to_kick in admins:
                 return '无法移出 @{}'.format(member_to_kick.name)
@@ -330,8 +177,6 @@ def remote_kick(msg):
 '''
 邀请消息处理
 '''
-
-
 def get_new_member_name(msg):
     # itchat 1.2.32 版本未格式化群中的 Note 消息
     from itchat.utils import msg_formatter
@@ -342,13 +187,10 @@ def get_new_member_name(msg):
         if match:
             return match.group(1)
 
-
 '''
 定义邀请用户的方法。
 按关键字搜索相应的群，如果存在相应的群，就向用户发起邀请。
 '''
-
-
 def invite(user, keyword):
     group = bot.groups().search(keyword_of_group[keyword])
     print(len(group))
@@ -365,15 +207,12 @@ def invite(user, keyword):
     else:
         user.send("该群状态有误，您换个关键词试试？")
 
-
 # 下方为消息处理
 
 '''
 处理加好友请求信息。
 如果验证信息文本是字典的键值之一，则尝试拉群。
 '''
-
-
 @bot.register(msg_types=FRIENDS)
 def new_friends(msg):
     user = msg.card.accept()
@@ -381,7 +220,6 @@ def new_friends(msg):
         invite(user, msg.text.lower())
     else:
         return invite_text
-
 
 @bot.register(Friend, msg_types=TEXT)
 def exist_friends(msg):
@@ -406,6 +244,13 @@ def wxpy_group(msg):
         else:
             pass
 
+@bot.register(Group, msg_types=CARD)
+def wxpy_group(msg):
+    ret_msg = remote_kick(msg)
+    if ret_msg:
+        return ret_msg
+    else:
+    		pass
 
 '''
 @bot.register(groups, NOTE)
@@ -414,5 +259,7 @@ def welcome(msg):
     if name:
         return welcome_text.format(name)
 '''
+
+
 
 embed()
