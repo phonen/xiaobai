@@ -85,6 +85,22 @@ def get_logger():
         alert_receiver = bot.file_helper
     logger = get_wechat_logger(alert_receiver, level=alert_level)
 
+def get_bsjgroup():
+    '''
+    机器人消息提醒设置
+    '''
+    global bsj_receiver, bsjer
+    if config.bsj_group:
+        try:
+            bsj_receiver = ensure_one(bot.groups().search(
+                config.bsj_group))
+        except:
+            print("bsj群设置有误，请检查群名是否存在且唯一")
+            bsj_receiver = bot.file_helper
+    else:
+        bsj_receiver = bot.file_helper
+    bsjer = get_wechat_logger(bsj_receiver, level=alert_level)
+
 
 def heartbeat():
     '''
@@ -261,7 +277,8 @@ def invite(user, keyword):
 
 
 fresh_groups()
-get_logger()
+get_bsjgroup()
+#get_logger()
 #logger.error(str("机器人登陆成功！" + get_time()))
 
 #start_new_thread(heartbeat)
@@ -271,7 +288,7 @@ def fresh_bsj():
     r = redis.Redis(host='localhost', port=6379, decode_responses=True)
     while True:
         content = r.rpop("content1")
-        logger.error(content)
+        bsjer.error(content)
         time.sleep(300)
 
 
