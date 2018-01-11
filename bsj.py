@@ -278,8 +278,8 @@ def invite(user, keyword):
 
 fresh_groups()
 get_bsjgroup()
-#get_logger()
-#logger.error(str("机器人登陆成功！" + get_time()))
+get_logger()
+logger.error(str("登陆成功！" + get_time()))
 
 #start_new_thread(heartbeat)
 
