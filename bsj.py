@@ -270,7 +270,7 @@ get_logger()
 def fresh_bsj():
     r = redis.Redis(host='localhost', port=6379, decode_responses=True)
     while True:
-        content = r.rpop("content")
+        content = r.rpop("content1")
         logger.error(content)
         time.sleep(300)
 
