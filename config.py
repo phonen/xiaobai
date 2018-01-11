@@ -7,7 +7,7 @@
 管理员在被管理的群中享有高级管理权限，可进行如踢人等的操作
 注：群名为部分匹配，请尽量输入全名以保证搜索到的群的唯一性
 '''
-admin_group_name = '小白管理群'
+admin_group_name = '韭菜群'
 
 '''
 定义被管理群的群名前缀
@@ -69,7 +69,7 @@ keyword_of_group.update(city_group)
 
 female_group = "机器人测试群"
 
-alert_group = "小白管理群"
+alert_group = "韭菜群"
 bsj_group = "数字资产投资交流群"
 turing_key = ''
 
