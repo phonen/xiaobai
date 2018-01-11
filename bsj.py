@@ -289,10 +289,10 @@ def fresh_bsj():
     while True:
         content = r.rpop("content1")
         if content == None:
-            time.sleep(300)
+            time.sleep(60)
         else:
             bsjer.error(content)
-            time.sleep(300)
+            time.sleep(60)
 
 
 
