@@ -262,7 +262,7 @@ def invite(user, keyword):
 
 fresh_groups()
 get_logger()
-logger.error(str("机器人登陆成功！" + get_time()))
+#logger.error(str("机器人登陆成功！" + get_time()))
 
 #start_new_thread(heartbeat)
 
