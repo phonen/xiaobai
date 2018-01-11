@@ -288,8 +288,11 @@ def fresh_bsj():
     r = redis.Redis(host='localhost', port=6379, decode_responses=True)
     while True:
         content = r.rpop("content1")
-        bsjer.error(content)
-        time.sleep(300)
+        if content == None:
+            time.sleep(300)
+        else:
+            bsjer.error(content)
+            time.sleep(300)
 
 
 
