@@ -149,8 +149,6 @@ def fresh_bsj():
 
 start_new_thread(fresh_bsj)
 
-#my_groups = [group1, group2, group3 ...]
-
 @bot.register(groups, except_self=False)
 def sync_my_groups(msg):
     sync_message_in_groups(msg, groups)

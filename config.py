@@ -25,7 +25,7 @@ group_prefix = 'xxx'
 
 注：必须输入完整名称
 '''
-additional_groups = ('数字资产投资交流群', '韭菜群','小白管理群')
+additional_groups = ( '韭菜分享','小白管理群')
 
 # 新人入群的欢迎语
 welcome_text = '''🎉 欢迎 @{} 的加入！
