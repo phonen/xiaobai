@@ -9,5 +9,5 @@ sys.path.append(root + '/python')
 import ccxt  # noqa: E402
 import key
 
-binance = ccxt.binance(binancekey)
+binance = ccxt.binance(key.binance)
 print(binance.fetch_balance())
