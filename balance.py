@@ -11,3 +11,5 @@ import key
 
 binance = ccxt.binance(key.binance)
 print(binance.fetch_balance())
+zb = ccxt.zb(key.zb)
+print(zb.fetch_balance())
