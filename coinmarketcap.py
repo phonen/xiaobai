@@ -2,12 +2,16 @@
 
 import os
 import sys
+from requests import Session
 
 root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(root + '/python')
 
-import ccxt  # noqa: E402
-import key
 
-coinmarket= ccxt.coinmarket()
-print(coinmarket.request())
+
+
+api = 'https://api.coinmarketcap.com/v1/ticker/'
+
+response = Session.request(api)
+print(response)
+
