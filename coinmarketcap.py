@@ -9,5 +9,5 @@ sys.path.append(root + '/python')
 import ccxt  # noqa: E402
 import key
 
-
+coinmarket= ccxt.coinmarket()
 print(coinmarket.request())
