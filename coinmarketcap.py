@@ -12,6 +12,7 @@ sys.path.append(root + '/python')
 
 api = 'https://api.coinmarketcap.com/v1/ticker/'
 
-response = Session.request(api)
+request = Session()
+response = request.get(api)
 print(response)
 
