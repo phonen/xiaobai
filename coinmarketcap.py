@@ -41,5 +41,7 @@ session = session if session else Session()
 response = session.request('GET',api,data=body,headers=None,timeout=int(timeout / 1000))
 last_http_response = response.text
 result = handle_rest_response(last_http_response)
-print(result)
+
+for data in result:
+    print(data)
 
