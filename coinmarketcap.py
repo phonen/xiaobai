@@ -43,5 +43,5 @@ last_http_response = response.text
 result = handle_rest_response(last_http_response)
 
 for data in result:
-    print(data)
+    print(data['symbol']+':'+data['24h_volume_usd'] + '\n')
 
