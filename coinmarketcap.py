@@ -12,6 +12,7 @@ root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.append(root + '/python')
 
 def handle_rest_response(response):
+    parseJsonResponse = True
     if parseJsonResponse:
         last_json_response = json.loads(response) if len(response) > 1 else None
         return last_json_response
@@ -20,7 +21,7 @@ def handle_rest_response(response):
 
 
 api = 'https://api.coinmarketcap.com/v1/ticker/'
-parseJsonResponse = True
+
 session = None  # Session () by default
 logger = None  # logging.getLogger(__name__) by default
 userAgent = None
