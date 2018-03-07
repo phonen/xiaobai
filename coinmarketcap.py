@@ -53,7 +53,7 @@ def cap():
     response = session.request('GET', api, data=body, headers=None, timeout=int(timeout / 1000))
     last_http_response = response.text
     result = handle_rest_response(last_http_response)
-    table = '<table><tr><td>币</td><td>交易量</td></tr>'
+    table = '<table boder=1><tr><td>币</td><td>交易量$</td></tr>'
     for data in result:
         table = table + '<tr><td>' + data['symbol'] + '</td><td>' + data['24h_volume_usd'] + '</td></tr>'
 
