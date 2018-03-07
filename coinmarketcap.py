@@ -47,7 +47,7 @@ cursor = db.cursor()
 
 for data in result:
     sql = """INSERT INTO coinmarket(symbol,price,volume,ctime)
-              values (data['symbol'],data['price'],data['24h_volume_usd'],now())"""
+              values (%s,%f,%d,now())""" % (data['symbol'],data['price'],data['24h_volume_usd'])
 
     try:
         cursor.execute(sql)
