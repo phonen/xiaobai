@@ -46,8 +46,8 @@ db = pymysql.connect("localhost","root","KeYpZrZx","btc")
 cursor = db.cursor()
 
 for data in result:
-    sql = """INSERT INTO coinmarket(symbol,price,volume,ctime)
-              values (%s,%s,%s,now())""" % (data['symbol'],data['price_usd'],data['24h_volume_usd'])
+    sql = """INSERT INTO coinmarket(symbol,price_usd,volume,last_updated)
+              values (%s,%s,%s,%s)""" % (data['symbol'],data['price_usd'],data['24h_volume_usd'],data['last_updated'])
 
     try:
         cursor.execute(sql)
