@@ -46,7 +46,7 @@ db = pymysql.connect("localhost","root","KeYpZrZx","btc")
 cursor = db.cursor()
 
 for data in result:
-    if data['price_usd']:
+    if data['price_usd'] and data['24h_volume_usd'] and data['last_updated']:
         sql = """INSERT INTO coinmarket(symbol,price_usd,volume,last_updated)
               values ('%s',%s,%s,%s)""" % (data['symbol'],data['price_usd'],data['24h_volume_usd'],data['last_updated'])
         print(sql)
