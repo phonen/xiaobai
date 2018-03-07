@@ -54,6 +54,7 @@ for data in result:
             cursor.execute(sql)
             db.comit()
         except:
+            print('error')
             db.rollback()
 db.close()
 
