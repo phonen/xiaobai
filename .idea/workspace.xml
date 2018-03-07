@@ -67,12 +67,12 @@
       <file leaf-file-name="coinmarketcap.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/coinmarketcap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="778">
-              <caret line="56" column="24" lean-forward="false" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+            <state relative-caret-position="742">
+              <caret line="55" column="12" lean-forward="true" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
               <folding>
                 <element signature="e#25#34#0" expanded="true" />
-                <marker date="1520408007202" expanded="true" signature="1711:1808" ph="INSERT INTO coinmarket... " />
-                <marker date="1520408007202" expanded="true" signature="1711:1892" ph="INSERT INTO coinmarket... " />
+                <marker date="1520408188337" expanded="true" signature="1711:1808" ph="INSERT INTO coinmarket... " />
+                <marker date="1520408188337" expanded="true" signature="1711:1892" ph="INSERT INTO coinmarket... " />
               </folding>
             </state>
           </provider>
@@ -692,7 +692,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520394467921</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="1">
+      <created>1520408012721</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1520408012723</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1040,12 +1047,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/coinmarketcap.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="778">
-          <caret line="56" column="24" lean-forward="false" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+        <state relative-caret-position="742">
+          <caret line="55" column="12" lean-forward="true" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
           <folding>
             <element signature="e#25#34#0" expanded="true" />
-            <marker date="1520408007202" expanded="true" signature="1711:1808" ph="INSERT INTO coinmarket... " />
-            <marker date="1520408007202" expanded="true" signature="1711:1892" ph="INSERT INTO coinmarket... " />
+            <marker date="1520408188337" expanded="true" signature="1711:1808" ph="INSERT INTO coinmarket... " />
+            <marker date="1520408188337" expanded="true" signature="1711:1892" ph="INSERT INTO coinmarket... " />
           </folding>
         </state>
       </provider>

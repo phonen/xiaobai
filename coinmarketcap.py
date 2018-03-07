@@ -52,7 +52,8 @@ for data in result:
         print(sql)
         try:
             cursor.execute(sql)
-            db.comit()
+            db.commit()
+            
         except:
             print('error')
             db.rollback()
