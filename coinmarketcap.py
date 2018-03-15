@@ -44,7 +44,8 @@ last_http_response = response.text
 result = handle_rest_response(last_http_response)
 db = pymysql.connect("localhost","root","KeYpZrZx","btc")
 cursor = db.cursor()
-
+cursor.execute("truncate table coinmarket_last")
+db.commit()
 for data in result:
     if data['price_usd'] and data['24h_volume_usd'] and data['last_updated']:
         sql = """INSERT INTO coinmarket(symbol,price_usd,volume,last_updated)
