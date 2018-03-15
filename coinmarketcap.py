@@ -50,7 +50,7 @@ for data in result:
         sql = """INSERT INTO coinmarket(symbol,price_usd,volume,last_updated)
               values ('%s',%s,%s,%s)""" % (data['symbol'],data['price_usd'],data['24h_volume_usd'],data['last_updated'])
         print(sql)
-        sql1 = """insert into coinmarket(symbol,price_usd,volume) values ('%s',%s,%s)""" % (data['symbol'],data['price_usd'],data['24h_volume_usd'])
+        sql1 = """insert into coinmarket_last(symbol,price_usd,volume) values ('%s',%s,%s)""" % (data['symbol'],data['price_usd'],data['24h_volume_usd'])
         try:
             cursor.execute(sql)
             db.commit()
