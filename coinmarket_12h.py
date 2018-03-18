@@ -17,18 +17,18 @@ cursor.execute(sql)
 result = cursor.fetchall()
 for row in result:
     symbol = row[0]
-    sql1 = """SELECT * from coinmarket where symbol='%s' ORDER BY last_updated desc limit 1""" % (symbol)
+    sql1 = """SELECT price_usd,24h_volume_usd,last_updated from coinmarket where symbol='%s' ORDER BY last_updated desc limit 1""" % (symbol)
     cursor.execute(sql1)
     result1 = cursor.fetchone()
-    price1 = result1['price_usd']
-    volume1 = result1['24h_volume_usd']
-    last1 = result1['last_updated']
-    sql2 = """select * from coinmarket where symbol='%s' and last_update<=%s - 12*3600 order by last_updated desc limit 1""" % (symbol,last1)
+    price1 = result1[0]
+    volume1 = result1[1]
+    last1 = result1[2]
+    sql2 = """select price_usd,24h_volume_usd,last_updated from coinmarket where symbol='%s' and last_update<=%s - 12*3600 order by last_updated desc limit 1""" % (symbol,last1)
     cursor.execute(sql2)
     result2 = cursor.fetchone()
-    price2 = result2['price_usd']
-    volume2 = result2['24h_volume_usd']
-    last2 = result2['last_updated']
+    price2 = result2[0]
+    volume2 = result2[1]
+    last2 = result2[2]
     print(sql1)
     print(sql2)
     try:
