@@ -29,9 +29,12 @@ for row in result:
     price2 = result2['price_usd']
     volume2 = result2['24h_volume_usd']
     last2 = result2['last_updated']
+    print(sql1)
+    print(sql2)
     try:
         sql = """insert into coinmarket_12h(symbol,price,volume) values ('%s',%s,%s)""" % (
         symbol, price1 - price2, volume1 - volume2)
+        print(sql)
         cursor.execute(sql)
         db.commit()
     except:
