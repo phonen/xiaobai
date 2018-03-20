@@ -48,8 +48,8 @@ cursor.execute("truncate table coinmarket_last")
 db.commit()
 for data in result:
     if data['price_usd'] and data['24h_volume_usd'] and data['last_updated']:
-        sql = """INSERT INTO coinmarket(symbol,price_usd,volume,last_updated)
-              values ('%s',%s,%s,%s)""" % (data['symbol'],data['price_usd'],data['24h_volume_usd'],data['last_updated'])
+        sql = """INSERT INTO coinmarket(symbol,price_usd,volume,last_updated,update_time)
+              values ('%s',%s,%s,%s,UNIX_TIMESTAMP() )""" % (data['symbol'],data['price_usd'],data['24h_volume_usd'],data['last_updated'])
         print(sql)
         sql1 = """insert into coinmarket_last(symbol,price_usd,volume) values ('%s',%s,%s)""" % (data['symbol'],data['price_usd'],data['24h_volume_usd'])
         try:
