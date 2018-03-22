@@ -81,13 +81,13 @@
       <file leaf-file-name="coinmarket_12h.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/coinmarket_12h.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="24" column="24" lean-forward="false" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+            <state relative-caret-position="750">
+              <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
               <folding>
                 <element signature="e#25#34#0" expanded="true" />
-                <marker date="1521728518465" expanded="true" signature="331:468" ph="select * fro... coinmarket" />
-                <marker date="1521728518465" expanded="true" signature="676:727" ph="select symbo... coinmarket_last" />
-                <marker date="1521728518465" expanded="true" signature="933:1000" ph="insert into coinmarket_12h... " />
+                <marker date="1521728766623" expanded="true" signature="331:468" ph="select * fro... coinmarket" />
+                <marker date="1521728766623" expanded="true" signature="676:727" ph="select symbo... coinmarket_last" />
+                <marker date="1521728766623" expanded="true" signature="973:1040" ph="insert into coinmarket_12h... " />
               </folding>
             </state>
           </provider>
@@ -406,13 +406,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1491205484985</updated>
-    </task>
-    <task id="LOCAL-00009" summary="1">
-      <created>1515634672251</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1515634672252</updated>
     </task>
     <task id="LOCAL-00010" summary="1">
       <created>1515634719429</created>
@@ -750,7 +743,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521728105008</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="1">
+      <created>1521728526056</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1521728526056</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1103,13 +1103,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/coinmarket_12h.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="24" column="24" lean-forward="false" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+        <state relative-caret-position="750">
+          <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
           <folding>
             <element signature="e#25#34#0" expanded="true" />
-            <marker date="1521728518465" expanded="true" signature="331:468" ph="select * fro... coinmarket" />
-            <marker date="1521728518465" expanded="true" signature="676:727" ph="select symbo... coinmarket_last" />
-            <marker date="1521728518465" expanded="true" signature="933:1000" ph="insert into coinmarket_12h... " />
+            <marker date="1521728766623" expanded="true" signature="331:468" ph="select * fro... coinmarket" />
+            <marker date="1521728766623" expanded="true" signature="676:727" ph="select symbo... coinmarket_last" />
+            <marker date="1521728766623" expanded="true" signature="973:1040" ph="insert into coinmarket_12h... " />
           </folding>
         </state>
       </provider>

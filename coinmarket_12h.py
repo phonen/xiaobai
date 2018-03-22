@@ -31,18 +31,22 @@ cursor.execute(sql)
 result = cursor.fetchall()
 
 for row in result:
+
     symbol = row[0]
-    price = row[1] - coin[symbol]['price']
-    volume = row[1] - coin[symbol]['volume']
-    try:
-        sql = """insert into coinmarket_12h(symbol,price,volume) values ('%s',%s,%s)""" % (
-        symbol, price, volume)
-        print(sql)
-        cursor.execute(sql)
-        db.commit()
-    except:
-        print('error')
-        db.rollback()
+    if symbol in coin:
+        price = row[1] - coin[symbol]['price']
+        volume = row[1] - coin[symbol]['volume']
+        try:
+            sql = """insert into coinmarket_12h(symbol,price,volume) values ('%s',%s,%s)""" % (
+                symbol, price, volume)
+            print(sql)
+            cursor.execute(sql)
+            db.commit()
+        except:
+            print('error')
+            db.rollback()
+
+
 
 
 
