@@ -81,13 +81,13 @@
       <file leaf-file-name="coinmarket_12h.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/coinmarket_12h.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="612">
+              <caret line="17" column="9" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
               <folding>
                 <element signature="e#25#34#0" expanded="true" />
-                <marker date="1521727067093" expanded="true" signature="331:468" ph="select * fro... coinmarket" />
-                <marker date="1521727067093" expanded="true" signature="632:683" ph="select symbo... coinmarket_last" />
-                <marker date="1521727067093" expanded="true" signature="889:956" ph="insert into coinmarket_12h... " />
+                <marker date="1521727172120" expanded="true" signature="331:468" ph="select * fro... coinmarket" />
+                <marker date="1521727172120" expanded="true" signature="632:683" ph="select symbo... coinmarket_last" />
+                <marker date="1521727172120" expanded="true" signature="889:956" ph="insert into coinmarket_12h... " />
               </folding>
             </state>
           </provider>
@@ -406,13 +406,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1491205484985</updated>
-    </task>
-    <task id="LOCAL-00006" summary="1">
-      <created>1515634117852</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1515634117852</updated>
     </task>
     <task id="LOCAL-00007" summary="1">
       <created>1515634336315</created>
@@ -750,7 +743,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521510008674</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="1">
+      <created>1521727077489</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1521727077490</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1103,13 +1103,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/coinmarket_12h.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="612">
+          <caret line="17" column="9" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
           <folding>
             <element signature="e#25#34#0" expanded="true" />
-            <marker date="1521727067093" expanded="true" signature="331:468" ph="select * fro... coinmarket" />
-            <marker date="1521727067093" expanded="true" signature="632:683" ph="select symbo... coinmarket_last" />
-            <marker date="1521727067093" expanded="true" signature="889:956" ph="insert into coinmarket_12h... " />
+            <marker date="1521727172120" expanded="true" signature="331:468" ph="select * fro... coinmarket" />
+            <marker date="1521727172120" expanded="true" signature="632:683" ph="select symbo... coinmarket_last" />
+            <marker date="1521727172120" expanded="true" signature="889:956" ph="insert into coinmarket_12h... " />
           </folding>
         </state>
       </provider>

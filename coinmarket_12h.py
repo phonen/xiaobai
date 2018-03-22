@@ -15,7 +15,7 @@ db.commit()
 sql1 = """select symbol,price_usd,volume from coinmarket where update_time<=UNIX_TIMESTAMP()-12*3600 and update_time> UNIX_TIMESTAMP() -12*3600-600"""
 cursor.execute(sql1)
 result1 = cursor.fetchall()
-coin = []
+coin = {}
 for row in result1:
     coin[row[0]]['price'] = row[1]
     coin[row[0]]['volume'] = row[2]
