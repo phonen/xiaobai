@@ -35,7 +35,7 @@ for row in result:
     symbol = row[0]
     if symbol in coin:
         price = row[1] - coin[symbol]['price']
-        volume = row[1] - coin[symbol]['volume']
+        volume = row[2] - coin[symbol]['volume']
         try:
             sql = """insert into coinmarket_12h(symbol,price,volume) values ('%s',%s,%s)""" % (
                 symbol, price, volume)
