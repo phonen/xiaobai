@@ -16,11 +16,13 @@ sql1 = """select symbol,price_usd,volume from coinmarket where update_time<=UNIX
 cursor.execute(sql1)
 result1 = cursor.fetchall()
 coin = {}
-
+coind = {}
 for row in result1:
     symbol = row[0]
-    coin[symbol]['price'] = row[1]
-    coin[symbol]['volume'] = row[2]
+    coind['price'] = row[1]
+    coind['volume'] = row[2]
+
+    coin[symbol] = coind
 
 
 sql = """select symbol,price_usd,volume from coinmarket_last"""
