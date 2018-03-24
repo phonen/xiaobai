@@ -29,7 +29,7 @@ cursor.execute(sql2)
 result2 = cursor.fetchall()
 coin2 = {}
 coind2 = {}
-for row in result1:
+for row in result2:
     symbol = row[0]
     coind2['price'] = row[1]
     coind2['volume'] = row[2]

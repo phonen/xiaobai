@@ -81,14 +81,14 @@
       <file leaf-file-name="coinmarket_12h.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/coinmarket_12h.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="562">
-              <caret line="53" column="110" lean-forward="false" selection-start-line="53" selection-start-column="110" selection-end-line="53" selection-end-column="110" />
+            <state relative-caret-position="634">
+              <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
               <folding>
                 <element signature="e#25#34#0" expanded="true" />
-                <marker date="1521914079883" expanded="true" signature="331:468" ph="select * fro... coinmarket" />
-                <marker date="1521914079883" expanded="true" signature="676:813" ph="select symbo... coinmarket" />
-                <marker date="1521914079883" expanded="true" signature="1027:1078" ph="select symbo... coinmarket_last" />
-                <marker date="1521914079883" expanded="true" signature="1446:1536" ph="insert into coinmarket_12h... " />
+                <marker date="1521914214390" expanded="true" signature="331:468" ph="select * fro... coinmarket" />
+                <marker date="1521914214390" expanded="true" signature="676:813" ph="select symbo... coinmarket" />
+                <marker date="1521914214390" expanded="true" signature="1027:1078" ph="select symbo... coinmarket_last" />
+                <marker date="1521914214390" expanded="true" signature="1446:1536" ph="insert into coinmarket_12h... " />
               </folding>
             </state>
           </provider>
@@ -408,13 +408,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1491205484985</updated>
-    </task>
-    <task id="LOCAL-00014" summary="1">
-      <created>1515679577164</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1515679577164</updated>
     </task>
     <task id="LOCAL-00015" summary="1">
       <created>1515719914331</created>
@@ -752,7 +745,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521913710984</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="1">
+      <created>1521914085831</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1521914085831</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1110,14 +1110,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/coinmarket_12h.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="53" column="110" lean-forward="false" selection-start-line="53" selection-start-column="110" selection-end-line="53" selection-end-column="110" />
+        <state relative-caret-position="634">
+          <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
           <folding>
             <element signature="e#25#34#0" expanded="true" />
-            <marker date="1521914079883" expanded="true" signature="331:468" ph="select * fro... coinmarket" />
-            <marker date="1521914079883" expanded="true" signature="676:813" ph="select symbo... coinmarket" />
-            <marker date="1521914079883" expanded="true" signature="1027:1078" ph="select symbo... coinmarket_last" />
-            <marker date="1521914079883" expanded="true" signature="1446:1536" ph="insert into coinmarket_12h... " />
+            <marker date="1521914214390" expanded="true" signature="331:468" ph="select * fro... coinmarket" />
+            <marker date="1521914214390" expanded="true" signature="676:813" ph="select symbo... coinmarket" />
+            <marker date="1521914214390" expanded="true" signature="1027:1078" ph="select symbo... coinmarket_last" />
+            <marker date="1521914214390" expanded="true" signature="1446:1536" ph="insert into coinmarket_12h... " />
           </folding>
         </state>
       </provider>
