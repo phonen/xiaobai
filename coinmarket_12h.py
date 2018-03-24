@@ -24,6 +24,18 @@ for row in result1:
 
     coin[symbol] = coind
 
+sql2 = """select symbol,price_usd,volume from coinmarket where update_time<=UNIX_TIMESTAMP()-48*3600 and update_time> UNIX_TIMESTAMP() -48*3600-600"""
+cursor.execute(sql2)
+result2 = cursor.fetchall()
+coin2 = {}
+coind2 = {}
+for row in result1:
+    symbol = row[0]
+    coind2['price'] = row[1]
+    coind2['volume'] = row[2]
+
+    coin2[symbol] = coind2
+
 
 sql = """select symbol,price_usd,volume from coinmarket_last"""
 cursor.execute(sql)
@@ -33,12 +45,14 @@ result = cursor.fetchall()
 for row in result:
 
     symbol = row[0]
-    if symbol in coin:
+    if symbol in coin and symbol in coin2:
         price = row[1] - coin[symbol]['price']
         volume = row[2] - coin[symbol]['volume']
+        volume48 = row[2] - coin2[symbol]['volume']
+        price48 = row[2] - coin2[symbol]['price']
         try:
-            sql = """insert into coinmarket_12h(symbol,price,volume) values ('%s',%s,%s)""" % (
-                symbol, price, volume)
+            sql = """insert into coinmarket_12h(symbol,price,volume,price48,volume48) values ('%s',%s,%s)""" % (
+                symbol, price, volume,price48,volume48)
             print(sql)
             cursor.execute(sql)
             db.commit()
