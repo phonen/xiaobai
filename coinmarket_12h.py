@@ -51,7 +51,7 @@ for row in result:
         volume48 = row[2] - coin2[symbol]['volume']
         price48 = row[2] - coin2[symbol]['price']
         try:
-            sql = """insert into coinmarket_12h(symbol,price,volume,price48,volume48) values ('%s',%s,%s)""" % (
+            sql = """insert into coinmarket_12h(symbol,price,volume,price48,volume48) values ('%s',%s,%s,%s,%s)""" % (
                 symbol, price, volume,price48,volume48)
             print(sql)
             cursor.execute(sql)
