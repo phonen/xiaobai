@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="456c9dab-8432-4cbe-9685-cd6919e5a81f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coinmarket_12h.py" afterPath="$PROJECT_DIR$/coinmarket_12h.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coinmarket_48h.py" afterPath="$PROJECT_DIR$/coinmarket_48h.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -78,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="coinmarket_12h.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="coinmarket_12h.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coinmarket_12h.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="634">
-              <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+            <state relative-caret-position="130">
+              <caret line="14" column="147" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="147" />
               <folding>
                 <element signature="e#25#34#0" expanded="true" />
                 <marker date="1521914214390" expanded="true" signature="331:468" ph="select * fro... coinmarket" />
@@ -101,6 +101,21 @@
               <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding>
                 <element signature="e#181#220#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="coinmarket_48h.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/coinmarket_48h.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1008">
+              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <folding>
+                <marker date="1522072074571" expanded="true" signature="331:833" ph="select a.sym... coinmarket_last" />
+                <marker date="1522072074571" expanded="true" signature="505:642" ph="select symbo... coinmarket" />
+                <marker date="1522072074571" expanded="true" signature="647:784" ph="select symbo... coinmarket" />
+                <marker date="1522072074571" expanded="true" signature="1077:1190" ph="insert into coinmarket_48h... " />
               </folding>
             </state>
           </provider>
@@ -148,8 +163,8 @@
         <option value="$PROJECT_DIR$/symbols.py" />
         <option value="$PROJECT_DIR$/coinmarket.py" />
         <option value="$PROJECT_DIR$/coinmarketcap.py" />
-        <option value="$PROJECT_DIR$/coinmarket_48h.py" />
         <option value="$PROJECT_DIR$/coinmarket_12h.py" />
+        <option value="$PROJECT_DIR$/coinmarket_48h.py" />
       </list>
     </option>
   </component>
@@ -408,13 +423,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1491205484985</updated>
-    </task>
-    <task id="LOCAL-00015" summary="1">
-      <created>1515719914331</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1515719914331</updated>
     </task>
     <task id="LOCAL-00016" summary="1">
       <created>1515721214575</created>
@@ -752,7 +760,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521914085831</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="1">
+      <created>1521914220243</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1521914220244</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1086,18 +1101,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coinmarket_48h.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1521913230530" expanded="true" signature="331:468" ph="select symbo... coinmarket" />
-            <marker date="1521913230530" expanded="true" signature="676:727" ph="select symbo... coinmarket_last" />
-            <marker date="1521913230530" expanded="true" signature="973:1040" ph="insert into coinmarket_48h... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/coinmarket.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1110,14 +1113,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/coinmarket_12h.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="634">
-          <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        <state relative-caret-position="130">
+          <caret line="14" column="147" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="147" />
           <folding>
             <element signature="e#25#34#0" expanded="true" />
             <marker date="1521914214390" expanded="true" signature="331:468" ph="select * fro... coinmarket" />
             <marker date="1521914214390" expanded="true" signature="676:813" ph="select symbo... coinmarket" />
             <marker date="1521914214390" expanded="true" signature="1027:1078" ph="select symbo... coinmarket_last" />
             <marker date="1521914214390" expanded="true" signature="1446:1536" ph="insert into coinmarket_12h... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coinmarket_48h.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1008">
+          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <marker date="1522072074571" expanded="true" signature="331:833" ph="select a.sym... coinmarket_last" />
+            <marker date="1522072074571" expanded="true" signature="505:642" ph="select symbo... coinmarket" />
+            <marker date="1522072074571" expanded="true" signature="647:784" ph="select symbo... coinmarket" />
+            <marker date="1522072074571" expanded="true" signature="1077:1190" ph="insert into coinmarket_48h... " />
           </folding>
         </state>
       </provider>
