@@ -13,7 +13,7 @@ cursor.execute("truncate table coinmarket_48h")
 db.commit()
 
 
-sql = """select a.symbol as symbol,a.price as price,a.volume as volume,b.price_usd as price12,b.volume as volume12,c.price_usd as price48,c.volume as volume48 from coinmarket_last a,(select symbol,price_usd,volume from coinmarket where update_time<=UNIX_TIMESTAMP()-12*3600 and update_time> UNIX_TIMESTAMP() -12*3600-600) b,(select symbol,price_usd,volume from coinmarket where update_time<=UNIX_TIMESTAMP()-48*3600 and update_time> UNIX_TIMESTAMP() -48*3600-600) c
+sql = """select a.symbol as symbol,a.price_usd as price,a.volume as volume,b.price_usd as price12,b.volume as volume12,c.price_usd as price48,c.volume as volume48 from coinmarket_last a,(select symbol,price_usd,volume from coinmarket where update_time<=UNIX_TIMESTAMP()-12*3600 and update_time> UNIX_TIMESTAMP() -12*3600-600) b,(select symbol,price_usd,volume from coinmarket where update_time<=UNIX_TIMESTAMP()-48*3600 and update_time> UNIX_TIMESTAMP() -48*3600-600) c
 where a.symbol=b.symbol and a.symbol=c.symbol"""
 cursor.execute(sql)
 
