@@ -29,7 +29,7 @@ for row in result:
     price48 = row[5]
     volume48 = row[6]
     try:
-        sql = """insert into coinmarket_48h(symbol,price,volume，price12,volume12,price48,volume48) values ('%s',%s,%s,%s,%s,%s,%s)""" % (
+        sql = """insert into coinmarket_48h(symbol,price,volume,price12,volume12,price48,volume48) values ('%s',%s,%s,%s,%s,%s,%s)""" % (
             symbol, price, volume,price12,volume12,price48,volume48)
         print(sql)
         cursor.execute(sql)
