@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="456c9dab-8432-4cbe-9685-cd6919e5a81f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/coinmarketsyncname.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coinmarketsyncname.py" afterPath="$PROJECT_DIR$/coinmarketsyncname.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,11 +51,11 @@
       <file leaf-file-name="coinmarketsyncname.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/coinmarketsyncname.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="27" column="16" lean-forward="true" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+            <state relative-caret-position="1030">
+              <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding>
-                <marker date="1522225841640" expanded="true" signature="1749:1806" ph="insert into coinmarket_last... " />
-                <marker date="1522225841640" expanded="true" signature="1749:1863" ph="insert into coins... " />
+                <marker date="1522226019739" expanded="true" signature="1751:1808" ph="insert into coinmarket_last... " />
+                <marker date="1522226019739" expanded="true" signature="1751:1865" ph="insert into coins... " />
               </folding>
             </state>
           </provider>
@@ -379,13 +379,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1491205484985</updated>
-    </task>
-    <task id="LOCAL-00019" summary="1">
-      <created>1519269071289</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1519269071289</updated>
     </task>
     <task id="LOCAL-00020" summary="1">
       <created>1519269196663</created>
@@ -723,7 +716,14 @@
       <option name="project" value="LOCAL" />
       <updated>1522072298012</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="1">
+      <created>1522225859105</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1522225859107</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1079,11 +1079,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/coinmarketsyncname.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="27" column="16" lean-forward="true" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+        <state relative-caret-position="1030">
+          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding>
-            <marker date="1522225841640" expanded="true" signature="1749:1806" ph="insert into coinmarket_last... " />
-            <marker date="1522225841640" expanded="true" signature="1749:1863" ph="insert into coins... " />
+            <marker date="1522226019739" expanded="true" signature="1751:1808" ph="insert into coinmarket_last... " />
+            <marker date="1522226019739" expanded="true" signature="1751:1865" ph="insert into coins... " />
           </folding>
         </state>
       </provider>

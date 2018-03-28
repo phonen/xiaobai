@@ -44,8 +44,8 @@ last_http_response = response.text
 result = handle_rest_response(last_http_response)
 db = pymysql.connect("localhost","root","KeYpZrZx","btc")
 cursor = db.cursor()
-cursor.execute("truncate table coinmarket_last")
-db.commit()
+#cursor.execute("truncate table coinmarket_last")
+#db.commit()
 for data in result:
     if data['id'] and data['name'] and data['symbol']:
         sql1 = """insert into coins(id,symbol,name) values ('%s','%s','%s') ON DUPLICATE KEY UPDATE id ='%s', symbol='%s', name='%s' """ % (data['id'],data['symbol'],data['name'],data['id'],data['symbol'],data['name'])
