@@ -12,8 +12,6 @@ from ssl import SSLError
 root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(root + '/python')
 
-
-
 def handle_rest_response(response):
     parseJsonResponse = True
     if parseJsonResponse:
@@ -51,7 +49,6 @@ for data in result:
         sql1 = """insert into coins(id,symbol,name) values ('%s','%s','%s') ON DUPLICATE KEY UPDATE id ='%s', symbol='%s', name='%s' """ % (data['id'],data['symbol'],data['name'],data['id'],data['symbol'],data['name'])
         print(sql1)
         try:
-
             cursor.execute(sql1)
             db.commit()
 
