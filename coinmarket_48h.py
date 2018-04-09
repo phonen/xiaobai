@@ -13,11 +13,12 @@ cursor.execute("truncate table coinmarket_48h")
 db.commit()
 
 
-sql = """select d.id as coinid,d.name as name,d.symbol as symbol,a.price_usd as price,a.volume as volume,b.price_usd as price12,b.volume as volume12,c.price_usd as price48,c.volume as volume48 
+sql = """select d.id as coinid,d.name as name,d.symbol as symbol,a.price_usd as price,a.volume as volume,b.price_usd as price12,b.volume as volume12,c.price_usd as price48,c.volume as volume48,e.price_usd as price24,e.volume as volume24 
 from coins d,coinmarket_last a,
 (select coinid,price_usd,volume from coinmarket where update_time<=UNIX_TIMESTAMP()-12*3600 and update_time> UNIX_TIMESTAMP() -12*3600-600) b,
-(select coinid,price_usd,volume from coinmarket where update_time<=UNIX_TIMESTAMP()-48*3600 and update_time> UNIX_TIMESTAMP() -48*3600-600) c
-where d.id=a.coinid and d.id=b.coinid and d.id=c.coinid"""
+(select coinid,price_usd,volume from coinmarket where update_time<=UNIX_TIMESTAMP()-48*3600 and update_time> UNIX_TIMESTAMP() -48*3600-600) c,
+(select coinid,price_usd,volume from coinmarket where update_time<=UNIX_TIMESTAMP()-24*3600 and update_time> UNIX_TIMESTAMP() -24*3600-600) e
+where d.id=a.coinid and d.id=b.coinid and d.id=c.coinid and d.id=e.coinid"""
 cursor.execute(sql)
 
 result = cursor.fetchall()

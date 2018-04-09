@@ -37,7 +37,7 @@
       <file leaf-file-name="coinmarketcap.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coinmarketcap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
+            <state relative-caret-position="1116">
               <caret line="39" column="48" lean-forward="false" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
               <folding>
                 <element signature="e#25#34#0" expanded="true" />
@@ -52,12 +52,15 @@
         <entry file="file://$PROJECT_DIR$/coinmarket_48h.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="958">
-              <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+              <caret line="32" column="1" lean-forward="true" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
               <folding>
-                <marker date="1522373661177" expanded="true" signature="331:888" ph="select a.sym... coinmarket_last" />
-                <marker date="1522373661177" expanded="true" signature="549:686" ph="select coini... coinmarket" />
-                <marker date="1522373661177" expanded="true" signature="692:829" ph="select coini... coinmarket" />
-                <marker date="1522373661177" expanded="true" signature="1165:1286" ph="insert into coinmarket_48h... " />
+                <marker date="1523260117579" expanded="true" signature="331:1075" ph="select a.sym... coinmarket_last" />
+                <marker date="1523260117579" expanded="true" signature="331:1085" ph="select d.id coins" />
+                <marker date="1523260117579" expanded="true" signature="331:1093" ph="select d.id " />
+                <marker date="1523260117579" expanded="true" signature="593:730" ph="select coini... coinmarket" />
+                <marker date="1523260117579" expanded="true" signature="736:873" ph="select coini... coinmarket" />
+                <marker date="1523260117579" expanded="true" signature="879:1016" ph="select coini... coinmarket" />
+                <marker date="1523260117579" expanded="true" signature="1370:1491" ph="insert into coinmarket_48h... " />
               </folding>
             </state>
           </provider>
@@ -120,7 +123,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-13" />
     <option name="y" value="-13" />
-    <option name="width" value="2174" />
+    <option name="width" value="2186" />
     <option name="height" value="1406" />
   </component>
   <component name="ProjectView">
@@ -366,13 +369,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1491205484985</updated>
-    </task>
-    <task id="LOCAL-00022" summary="1">
-      <created>1519605945020</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1519605945021</updated>
     </task>
     <task id="LOCAL-00023" summary="1">
       <created>1520099329279</created>
@@ -710,14 +706,21 @@
       <option name="project" value="LOCAL" />
       <updated>1522307221583</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="1">
+      <created>1522373667818</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1522373667819</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-13" y="-13" width="2174" height="1406" extended-state="0" />
+    <frame x="-13" y="-13" width="2186" height="1406" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24861111" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1045,7 +1048,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/coinmarketcap.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
+        <state relative-caret-position="1116">
           <caret line="39" column="48" lean-forward="false" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
           <folding>
             <element signature="e#25#34#0" expanded="true" />
@@ -1058,12 +1061,15 @@
     <entry file="file://$PROJECT_DIR$/coinmarket_48h.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="958">
-          <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <caret line="32" column="1" lean-forward="true" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
           <folding>
-            <marker date="1522373661177" expanded="true" signature="331:888" ph="select a.sym... coinmarket_last" />
-            <marker date="1522373661177" expanded="true" signature="549:686" ph="select coini... coinmarket" />
-            <marker date="1522373661177" expanded="true" signature="692:829" ph="select coini... coinmarket" />
-            <marker date="1522373661177" expanded="true" signature="1165:1286" ph="insert into coinmarket_48h... " />
+            <marker date="1523260117579" expanded="true" signature="331:1075" ph="select a.sym... coinmarket_last" />
+            <marker date="1523260117579" expanded="true" signature="331:1085" ph="select d.id coins" />
+            <marker date="1523260117579" expanded="true" signature="331:1093" ph="select d.id " />
+            <marker date="1523260117579" expanded="true" signature="593:730" ph="select coini... coinmarket" />
+            <marker date="1523260117579" expanded="true" signature="736:873" ph="select coini... coinmarket" />
+            <marker date="1523260117579" expanded="true" signature="879:1016" ph="select coini... coinmarket" />
+            <marker date="1523260117579" expanded="true" signature="1370:1491" ph="insert into coinmarket_48h... " />
           </folding>
         </state>
       </provider>
